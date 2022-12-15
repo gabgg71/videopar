@@ -11,7 +11,6 @@ import Participantes from './Participantes'
 import Invita from './Invita';
 import { Grabaciones } from './Grabaciones';
 
-
 const socket = io(
   process.env.REACT_APP_BACK_URL,
   {
@@ -107,7 +106,7 @@ function VideoLlamada() {
       pc.current.close()
       //pc.current.close()
       setSendChannels([])
-      window.location.href = window.location.origin+"/fin"
+      window.location.href = window.location.origin+"/videopar/fin"
       
     }
   

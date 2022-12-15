@@ -20,7 +20,7 @@ export const Datos =({setDatos, tipo})=>{
             let usuario = document.querySelector(".user")
         let generado = uuidv4();
         if(usuario.value){
-            setCodigo("/session/"+generado)
+            setCodigo("session/"+generado)
             setUsuario(usuario.value)
             setMensaje("Entrar a la sesion")
         }else{
@@ -44,7 +44,7 @@ export const Datos =({setDatos, tipo})=>{
 
             }else{
                 localStorage.setItem('usuario', usuario);
-                window.location.href =window.location.origin+codigo
+                window.location.href =window.location.href+codigo
             }
             
         }
@@ -55,7 +55,7 @@ export const Datos =({setDatos, tipo})=>{
     const copyToClipboard =()=> {
         //window.prompt("Copy to clipboard: Ctrl+C, Enter", codigo);
         
-        navigator.clipboard.writeText(window.location.origin+codigo);
+        navigator.clipboard.writeText(window.location.href+codigo);
     }
 
     
@@ -72,7 +72,7 @@ export const Datos =({setDatos, tipo})=>{
             <>
             <p>Este es el enlace de la sesión</p>
             <div className='enlace'>
-            <p>{window.location.origin}{codigo}</p>
+            <p>{window.location.href+codigo}{codigo}</p>
             <button className='copiar'><span className="material-symbols-outlined" onClick={copyToClipboard}> 
         <span class="material-symbols-outlined">
 file_copy
