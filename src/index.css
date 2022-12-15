@@ -1,0 +1,471 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Lato', sans-serif;
+  color: white;
+  
+}
+
+.videos{
+  width: 80%;
+  height: 90%;
+  background-color: rgb(72, 72, 72);
+  position: relative;
+  z-index: 50;
+}
+
+.et1{
+  position: absolute;
+  z-index: 20000000;
+  background-color: rgb(13,16,37);
+  color: white;
+
+}
+
+.et2{
+  position: absolute;
+  z-index: 20000000;
+  background-color: rgb(13,16,37);
+  color: white;
+  bottom: 0.3vh;
+  left: 0.1vh;
+
+}
+
+
+.otroVideo{
+  border-radius: 2vw;
+}
+
+
+.App{
+  height: 98vh;
+  width: 100vw;
+}
+
+.controls{
+  background-color: rgb(199, 199, 213);
+  padding: 1%;
+  border-radius: 20px;
+  width: 3vw;
+  height: 5vh;
+  margin-top: 1%;
+}
+
+.enviarM button{
+  border: none;
+  margin: auto;
+  background-color: white;
+  color: black;
+}
+
+.enviarM button:hover{
+  color: rgb(13,16,37);
+}
+
+
+
+.escribir{
+  top:93%;
+  margin-left: 0% !important;
+  margin-top: 4%;
+  padding: 0%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  color: black;
+}
+
+.escribir *{
+  margin-left: 0% !important;
+  
+
+}
+
+.controles{
+  background-color: rgb(13,16,37);
+  width: 100%;
+  height: 10%;
+  
+}
+
+
+.centrado{
+  width: 45%;
+  
+  margin: auto;
+  padding-top: 1%;
+
+}
+
+
+.controles button{
+  padding: 0%;
+}
+
+.invita-btn{
+  top: 92%;
+  left: 5%;
+  z-index: 100;
+  width:5%;
+  height: 3%;
+  border-radius: 10px;
+  position: absolute;
+
+}
+
+.image-chat{
+  width: 90%;
+
+  margin: 3%;
+  border-radius: 10px;
+}
+
+.embed{
+  z-index: 100000000;
+  background-color: white;
+}
+
+.image-large{
+  position: fixed;
+  z-index: 200;
+  height: 75%;
+  top: 50%;
+  left: 20%;
+  transform: translate(-20%, -50%);
+  margin: 0;
+}
+
+.doc-large{
+  position: fixed;
+  z-index: 200;
+  left: 5%;
+  top: 10%;
+  height: 65vh;
+  background-color: rgb(50,54,57);
+  padding: 1%;
+  border-radius: 10px;
+}
+
+embed{
+  margin-top: 5%;
+  width: 60vw;
+  margin-left: 0% !important;
+  height: 60vh;
+  margin-left: 0%;
+}
+
+.enviarM{
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  z-index: 500000;
+  color: black;
+  height: 10%;
+  top:80%;
+  position: absolute;
+  left: 5%;
+  padding: 2%;
+  border-radius: 10px;
+}
+
+.elChat{
+  position: absolute;
+  right: 0%;
+  background-color: white;
+  top:0%;
+  height: 88%;
+  width: 20%;
+  color: white;
+}
+
+
+
+
+.invita{
+  z-index: 50;
+  right: 1%;
+  background-color: white;
+  width: 30%;
+  position: absolute;
+  border-radius: 0.5vw;
+  text-align:center;
+  color: black;
+}
+
+.elChat *{
+  margin-left: 5%;
+}
+
+.right{
+  margin-left: 20% !important;
+  margin-right: 5%;
+}
+
+.left{
+  margin-left: 0%;
+  margin-right: 25%;
+  padding-left: 0%;
+
+}
+.chat{
+  overflow-y: scroll;
+  height: 90%;
+  margin-left: 5%;
+  margin-top: 2%;
+}
+
+.textarea{
+  border-radius: 5px;
+  padding: 4%;
+  border: 2px groove rgb(13,16,37);
+  width: 100%;
+}
+
+
+.secondary{
+  height: 20vh;
+  width: 20vh;
+  z-index: 100;
+  position: absolute;
+  bottom: 0%;
+  background-color: black;
+  border-radius: 8vw;
+  object-fit: cover;
+  border: 10px double rgb(13,16,37);
+}
+
+.secondary p{
+  bottom:19vh;
+  color: black;
+  position: absolute;
+  z-index: 200;
+  background-color: rgb(13,16,37);
+}
+.focus{
+  width: 100%;
+  position: absolute;
+  z-index: 10;
+  height: 100% ;
+  background-color: black;
+  object-fit:contain;
+  
+}
+
+.focus p{
+  position: absolute;
+  z-index: 20000000;
+  background-color: rgb(19, 19, 53);
+color: black;
+}
+
+.error{
+  color: red !important;
+}
+
+.btn-switch{
+  display: inline-block;
+}
+
+.btn-morado{
+  background-color: rgb(13,16,37);
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 5%;
+  color:white !important;
+}
+.btn-morado:hover{
+  background-color: rgb(13,16,37);
+
+}
+
+.btn-close{
+  position: absolute;
+  left: 95%;
+  height: 8%;
+  z-index: 200;
+  border: none;
+  background-color: white;
+  color:rgb(13,16,37);
+  font-size: larger;
+}
+
+.btn-cerrar{
+  position: absolute;
+  border: none;
+  color: rgb(241,241,241);
+  background-color: rgb(50,54,57);
+  top: 5%;
+  right: 3.4%;
+  font-size: 1vw;
+  z-index: 400;
+  width: 2%;
+  z-index: 10000000000;
+  opacity: 0.92;
+  
+
+}
+
+.abrir{
+  background-color: rgb(13,16,37);
+  color: white;
+}
+
+.doc-small{
+  border-radius: 5px;
+  border:2px groove rgb(13,16,37);
+  margin: 5%;
+  background-color: white !important;
+  color: black;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.copiar{
+  border: none;
+  background-color: rgb(210, 212, 213);
+  color:rgb(13,16,37);
+  margin-left: 1%;
+}
+
+.copiar:active{
+  color:rgb(57, 243, 63);
+
+}
+h1{
+  padding: 1%;
+  margin: 0%;
+}
+.titulo{
+  background-color: rgb(13,16,37);
+  height: 10%;
+}
+
+.datos{
+  position: absolute;
+  background-color: white;
+  left: 30%;
+  top:28%;
+  width: 40%;
+  height: 45%;
+  border-radius: 10px;
+  box-shadow: 0.3vw 0.3vh 0.3vh 0.3vh  rgb(13,16,37);
+  
+}
+
+.enlace{
+  background-color: rgb(210, 212, 213);
+  border-radius: 5px;
+  border:2px groove rgb(13,16,37);
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  padding: 2%;
+  margin: 0% 2% 2% 2%;
+}
+
+.material-symbols-outlined{
+  margin-top: 1.2%;
+  
+}
+
+.sep{
+  padding: 5%;
+  display: flex;
+  flex-direction: column;
+  color: black;
+}
+
+.flexi *{
+  text-align: center;
+  color: black;
+}
+
+.author{
+  bottom: 2%;
+  padding: 2%;
+  height: 10%;
+
+}
+
+.despedida {
+  margin-top: 25%;
+  text-align: center;
+  font-size: 1vw;
+  color: black;
+}
+
+.despedida span{
+  font-size: 1vw;
+}
+
+.imagen{
+  height: 40vh;
+  border-radius: 20px;
+  object-fit: contain;
+}
+.pagina{
+  height: 80%;
+  display: flex;
+  flex-direction: row;
+}
+
+.flexi{
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  justify-content: space-evenly;
+}
+
+.publi{
+  width: 20%;
+}
+
+.participantes{
+  overflow-y: scroll;
+  height: 90%;
+  margin-left: 5%;
+  color: black;
+  margin-top: 8%;
+  width: 95%;
+}
+
+.grabaciones{
+  overflow-y: scroll;
+  height: 95%;
+  margin-left: 5%;
+  color: black;
+  margin-top: 8%;
+  width: 95%;
+}
+
+.none{
+  display: none;
+}
+
+
+
+.msg{
+  background-color: rgb(13,16,37);
+  border-radius: 5px;
+  margin-top: 1vw;
+  margin-bottom: 1vw;
+  padding: 3%;
+  
+ 
+}
+
+.message{
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+  margin: 5%;
+}
+
+.problema{
+  color: red;
+  position: relative;
+}
+
+
