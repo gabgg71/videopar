@@ -11,7 +11,7 @@ import Participantes from './Participantes'
 import Invita from './Invita';
 import { Grabaciones } from './Grabaciones';
 
-
+//"https://videocall-back.glitch.me/webRTCPeers"
 const socket = io(
   "https://videocall-back.glitch.me/webRTCPeers",
   {
@@ -107,7 +107,7 @@ function VideoLlamada() {
       pc.current.close()
       //pc.current.close()
       setSendChannels([])
-      window.location.href = window.location.origin+"/fin"
+      window.location.href = window.location.origin+"/videopar/fin"
       
     }
   

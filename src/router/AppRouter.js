@@ -9,7 +9,7 @@ import { Datos } from "../components/Datos";
 export const AppRouter = () => {
   let { usuario, setUsuario, setDatos} = useContext(userContext);
   return (
-    <Router>
+    <Router basename='/videopar'>
       <div>
         <Routes>
           <Route exact path="/" element={<Bienvenido/>} />
