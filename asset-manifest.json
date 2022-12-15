@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/videopar/static/css/main.94532312.css",
+    "main.js": "/videopar/static/js/main.09a22390.js",
+    "index.html": "/videopar/index.html",
+    "main.94532312.css.map": "/videopar/static/css/main.94532312.css.map",
+    "main.09a22390.js.map": "/videopar/static/js/main.09a22390.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.94532312.css",
+    "static/js/main.09a22390.js"
+  ]
+}
