@@ -368,7 +368,7 @@ h1{
   padding: 5%;
   width: 90%;
   text-align: start;
-  border: 0px 0px 0px 50px solid rgb(13,16,37);
+  border-color: rgb(13,16,37);
 
   
 }
