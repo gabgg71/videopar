@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/videopar/static/css/main.ad5f77eb.css",
+    "main.css": "/videopar/static/css/main.8990c2dc.css",
     "main.js": "/videopar/static/js/main.e5f72699.js",
     "index.html": "/videopar/index.html",
-    "main.ad5f77eb.css.map": "/videopar/static/css/main.ad5f77eb.css.map",
+    "main.8990c2dc.css.map": "/videopar/static/css/main.8990c2dc.css.map",
     "main.e5f72699.js.map": "/videopar/static/js/main.e5f72699.js.map"
   },
   "entrypoints": [
-    "static/css/main.ad5f77eb.css",
+    "static/css/main.8990c2dc.css",
     "static/js/main.e5f72699.js"
   ]
 }
