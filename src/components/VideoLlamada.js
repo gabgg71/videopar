@@ -9,6 +9,7 @@ import io from 'socket.io-client'
 import Chat from './Chat'
 import Participantes from './Participantes'
 import Invita from './Invita';
+import Preguntas from './Preguntas';
 import { Grabaciones } from './Grabaciones';
 
 //"https://videocall-back.glitch.me/webRTCPeers"
@@ -33,6 +34,7 @@ function VideoLlamada() {
     const remoteVideoref = useRef();
     const [llamar, setVisible] =useState(true)
     const [invita,setInvita] =useState(false)
+    const [preguntas,setPreguntas] =useState(false)
     const [condiciones, setCondiciones] =useState({
       mic: localStorage.getItem("aud") || false, 
       camera: localStorage.getItem("cam") || false,
@@ -360,7 +362,9 @@ function VideoLlamada() {
         };
        
         try {
-          const stream = await navigator.mediaDevices.getUserMedia(constraints);
+          //const stream = await navigator.mediaDevices.getUserMedia(constraints);
+          const stream = (clases[0] ==="focus")?(localVideoref.current.srcObject):(remoteVideoref.current.srcObject)
+          //const stream = remoteVideoref.current.srcObject.getTracks().filter(track => track.kind === 'video')
           window.stream = stream;
           const options = { mimeType: "video/webm; codecs=vp9" };
           const mediaRecorder = new MediaRecorder(window.stream, options);
@@ -427,6 +431,7 @@ function VideoLlamada() {
         }
         
         {invita && <Invita setInvita={setInvita}/>}
+        {preguntas && <Preguntas setPreguntas={setPreguntas}/>}
 
 
         </div>
@@ -476,6 +481,7 @@ function VideoLlamada() {
         </button>
         </div>
         <button  onClick={()=>{setInvita(true)}} className='invita-btn'>Invita</button>
+        <button  onClick={()=>{setPreguntas(true)}} className='preguntas-btn'>Preguntas</button>
 
         </div>
         {opcion ===0 && <Chat
