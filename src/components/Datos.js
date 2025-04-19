@@ -13,7 +13,6 @@ export const Datos =({setDatos, tipo})=>{
     
     const [error, setError] = useState()
     let { usuario, setUsuario } = useContext(userContext);
-    const navigate = useNavigate();
     
     function verifica (){
         if(mensaje ==="Generar enlace"){
@@ -72,7 +71,7 @@ export const Datos =({setDatos, tipo})=>{
             <>
             <p>Este es el enlace de la sesión</p>
             <div className='enlace'>
-            <p>{window.location.href+codigo}{codigo}</p>
+            <p>{window.location.href+codigo}</p>
             <button className='copiar'><span className="material-symbols-outlined" onClick={copyToClipboard}> 
         <span class="material-symbols-outlined">
 file_copy
@@ -85,7 +84,7 @@ file_copy
         <div className='btn-switch'>
         <p>Audio</p>
         <input type="checkbox" id="miSwitch" onClick={()=>{
-            localStorage.setItem('aud', !opcion[0]);
+            sessionStorage.setItem('aud', !opcion[0]);
             opcion[0] = !opcion[0]
             }}/>
         </div>
@@ -93,7 +92,7 @@ file_copy
         <p>Camara</p>
         <input type="checkbox" id="miSwitch" onClick={
             ()=>{
-                localStorage.setItem('cam', !opcion[1]);
+                sessionStorage.setItem('cam', !opcion[1]);
                 opcion[1] = !opcion[1]
                 }
             }/>
