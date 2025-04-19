@@ -1,8 +1,5 @@
 import React, { useRef, useEffect, useState, useContext } from 'react';
 import { userContext } from '../hooks/useContext';
-import { Buffer } from 'buffer';
-
-
 
 import io from 'socket.io-client'
 //import Draggable from './components/Draggable';
@@ -11,6 +8,7 @@ import Participantes from './Participantes'
 import Invita from './Invita';
 import Preguntas from './Preguntas';
 import { Grabaciones } from './Grabaciones';
+import NotificaError from './NotificaError';
 
 const socket = io(
   process.env.REACT_APP_BACK_URL,
@@ -22,21 +20,18 @@ const socket = io(
   }
 )
 
-window.addEventListener("beforeunload", function(e) {
-  localStorage.removeItem("aud")
-  localStorage.removeItem("cam")
-});
-
-
 function VideoLlamada() {
     const localVideoref = useRef();
     const remoteVideoref = useRef();
     const [llamar, setVisible] =useState(true)
     const [invita,setInvita] =useState(false)
+    const [errorMsg, setErrorMsg] =useState("");
+    const [hasCamera, setHasCamera] =useState(true);
+    const [hasMic, setHasMic] =useState(true);
     const [preguntas,setPreguntas] =useState(false)
     const [condiciones, setCondiciones] =useState({
-      mic: localStorage.getItem("aud") || false, 
-      camera: localStorage.getItem("cam") || false,
+      mic: false, 
+      camera: false,
       share: false,
       record: false
     })
@@ -91,11 +86,15 @@ function VideoLlamada() {
     }
 
     const mutearAudio = (e) => {
-      const stream = localVideoref.current.srcObject.getTracks().filter(track => track.kind === 'audio')
-      if (stream){
-        stream[0].enabled = !condiciones.mic
-        setCondiciones({...condiciones, mic: !condiciones.mic})
-      } 
+      if(hasMic){
+        const stream = localVideoref.current.srcObject.getTracks().filter(track => track.kind === 'audio')
+        if (stream){
+          stream[0].enabled = !condiciones.mic
+          setCondiciones({...condiciones, mic: !condiciones.mic})
+        } 
+      }else{
+        setErrorMsg("Su microfono no esta conectado, conectelo y acceda de nuevo");
+      }
     
     }
 
@@ -113,10 +112,14 @@ function VideoLlamada() {
     }
   
     const mutearCamera = (e) => {
-      const stream = localVideoref.current.srcObject.getTracks().filter(track => track.kind === 'video')
-      if (stream){
-        stream[0].enabled = !condiciones.camera
-        setCondiciones({...condiciones, camera: !condiciones.camera})
+      if(hasCamera){
+        const stream = localVideoref.current.srcObject.getTracks().filter(track => track.kind === 'video')
+        if (stream){
+          stream[0].enabled = !condiciones.camera
+          setCondiciones({...condiciones, camera: !condiciones.camera})
+        }
+      }else{
+        setErrorMsg("No tiene camara, conectela y acceda de nuevo");
       }
     }
 
@@ -247,31 +250,39 @@ function VideoLlamada() {
         }
       })
 
+      setCondiciones({...condiciones, mic: sessionStorage.getItem("aud"), camera: sessionStorage.getItem("cam")});
+      navigator.mediaDevices.enumerateDevices()
+      .then(devices => {
+        const hasCamera = devices.some(d => d.kind === 'videoinput');
+        const hasMic = devices.some(d => d.kind === 'audioinput');
+        setHasCamera(hasCamera);
+        setHasMic(hasMic);
+        if (!hasCamera || !hasMic) {
+          setCondiciones({...condiciones, mic: hasMic, camera: hasCamera});
+          setErrorMsg(`Dispositivos no detectados: ${!hasCamera ? 'Cámara' : ''} ${!hasMic ? 'Micrófono' : ''}`)
+        }
 
       const constrains = {
-        video: true,
-        audio: true,
-        echoCancellation: true,
-        noiseSuppression:true,
-        options: {
-          mirror: true,
-        }
+        video: hasCamera ? true: false,
+        audio: hasMic ? {
+          echoCancellation: true,
+          noiseSuppression: true
+        } : false
       };
-      navigator.mediaDevices.getUserMedia(constrains).then(
+      return navigator.mediaDevices.getUserMedia(constrains);
+    }).then(
         stream => {
-          localVideoref.current.srcObject = stream;
-          stream.getTracks().forEach(track =>{
-            if(track.kind === 'audio'){
-              track.enabled = localStorage.getItem("aud") || false
-            }
-            if(track.kind === 'video'){
-              track.enabled = localStorage.getItem("cam") || false
-            }
-            
-            pc.current.addTrack(track, stream)
+            localVideoref.current.srcObject = stream;
+            stream.getTracks().forEach(track =>{
+              if(track.kind === 'audio' && hasMic){
+                track.enabled = sessionStorage.getItem("aud") === 'true';
+              }
+              if(track.kind === 'video' && hasCamera){
+                track.enabled = sessionStorage.getItem("cam") === 'true';
+              }
+              pc.current.addTrack(track, stream)
           })
           whoisOnline()
-
         }
       ).catch(e => {
         console.log(`hay error ${e}`)
@@ -287,24 +298,29 @@ function VideoLlamada() {
         }
       }
 
-      
-
       _pc.oniceconnectionstatechange = (e) => {
-        //se hace cuando entra alguien
         if(solo === false && clases[0]==="focus"){
           setClases(["secondary", "focus", "et2", "et1"])
           setMensaje("Llamada establecida")
         }
       }
-
-    
       
-      //establecer stream remoto
       _pc.ontrack = (ev) => {
         remoteVideoref.current.srcObject = ev.streams[0];
       }
       pc.current = _pc;
 
+      const handleUnload = () => {
+        sessionStorage.removeItem("aud");
+        sessionStorage.removeItem("cam");
+      };
+  
+      window.addEventListener('beforeunload', handleUnload);
+  
+      return () => {
+        handleUnload()
+        window.removeEventListener('beforeunload', handleUnload);
+      };
 
     }, [])
 
@@ -361,9 +377,7 @@ function VideoLlamada() {
         };
        
         try {
-          //const stream = await navigator.mediaDevices.getUserMedia(constraints);
           const stream = (clases[0] ==="focus")?(localVideoref.current.srcObject):(remoteVideoref.current.srcObject)
-          //const stream = remoteVideoref.current.srcObject.getTracks().filter(track => track.kind === 'video')
           window.stream = stream;
           const options = { mimeType: "video/webm; codecs=vp9" };
           const mediaRecorder = new MediaRecorder(window.stream, options);
@@ -428,7 +442,7 @@ function VideoLlamada() {
 
         
         }
-        
+        {errorMsg !== "" && <NotificaError errorMsg={errorMsg} setErrorMsg={setErrorMsg}/>}
         {invita && <Invita setInvita={setInvita}/>}
         {preguntas && <Preguntas setPreguntas={setPreguntas}/>}
 

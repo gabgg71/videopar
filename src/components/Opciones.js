@@ -1,4 +1,4 @@
-import React, {useContext, useState } from 'react'
+import React, {useContext } from 'react'
 import {userContext} from '../hooks/useContext';
 export const Opciones =({handleSubmit, setOpcion})=>{
     let {usuario} = useContext(userContext);

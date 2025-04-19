@@ -195,7 +195,18 @@ embed{
   color: white;
 }
 
-
+.deviceError{
+  z-index: 50;
+  left: 0%;
+  bottom: 0%;
+  background-color: red;
+  width: 100%;
+  height: 20%;
+  position: absolute;
+  border-radius: 0.5vw;
+  text-align:center;
+  color: white;
+}
 
 
 .invita{
@@ -308,6 +319,10 @@ color: black;
   background-color: white;
   color:rgb(13,16,37);
   font-size: larger;
+}
+.deviceError .btn-close{
+  background-color: red;
+  color: white;
 }
 
 .btn-cerrar{
@@ -519,4 +534,13 @@ h1{
   position: relative;
 }
 
-
+@media (max-width: 800px) {
+  .invita-btn{
+    width:10%;
+  }
+  
+  .preguntas-btn{
+    width:10%;
+  
+  }
+}

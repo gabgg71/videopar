@@ -1,6 +1,8 @@
-import React, { useState, useContext} from 'react'
+import React, { useContext} from 'react'
 import { Datos } from './Datos'
 import { userContext } from '../hooks/useContext';
+
+const videoImg = process.env.REACT_APP_IMG_URL;
 export const Bienvenido =()=>{
     let {datos,setDatos} = useContext(userContext);
     
@@ -18,7 +20,7 @@ export const Bienvenido =()=>{
         </div>
         <div className='flexi'>
         <h2>Videollamadas en pares fácil, rápido y sin necesidad de registro</h2>
-        <img src='https://cdn.computerhoy.com/sites/navi.axelspringer.es/public/media/image/2020/04/skype-1909379.jpg' className='imagen'></img>
+        <img src={videoImg} className='imagen' alt='img'></img>
         <button className="btn-morado" onClick={()=>setDatos(true, 1)}>Crear reunión</button>
         {datos && <Datos setDatos={setDatos} tipo={1}/>}
         </div>

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { userContext } from '../hooks/useContext';
 const Participantes =()=>{
     let {usuario, conectados} = useContext(userContext);
